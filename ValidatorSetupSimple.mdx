@@ -6,9 +6,9 @@ description: "This guide walks you through the simple validator setup."
 <Note>
   ### Prerequisites
 
-  1. \*\*Subtensor lite node with `--pruning=2000`\*\* configured
-  2. \*\*Python 3.10+\*\* installed
-  3. \*\*pip/venv\*\* for isolated environment
+  1. Subtensor lite node with `--pruning=2000`configured
+  2. Python 3.10+ installed
+  3. pip/venv for isolated environment
   4. A funded coldkey/hotkey wallet with stake registered in Subnet 73
 </Note>
 
@@ -60,7 +60,7 @@ pm2 start python \
 --wallet.name metahash \ 
 --wallet.hotkey validatorx \
 --neuron.axon_off \
---logging.debug \
+--logging.debug
 ```
 
 ### Run Validator (python)
@@ -72,7 +72,7 @@ python neurons/validator.py \
 --wallet.name metahash \ 
 --wallet.hotkey validatorx \
 --neuron.axon_off \
---logging.debug \
+--logging.debug
 ```
 
 <Note>

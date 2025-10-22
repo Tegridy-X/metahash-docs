@@ -49,6 +49,11 @@
           "anchor": "Bittensor Discord",
           "href": "https://discord.com/invite/bittensor",
           "icon": "discord"
+        },
+        {
+          "anchor": "MetaHash Discord",
+          "href": "https://discord.gg/m9J8QTf5JT",
+          "icon": "discord"
         }
       ]
     }
