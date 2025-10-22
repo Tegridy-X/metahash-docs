@@ -15,13 +15,12 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "README"
-            ]
+            "pages": []
           },
           {
             "group": "Setup Guides",
             "pages": [
+              "README",
               "MinerSetupSimple",
               "MinerSetupAdvanced",
               "ValidatorSetupSimple",
@@ -56,7 +55,7 @@
   },
   "logo": {
     "light": "/logo/metahash-logo.png",
-    "dark": "/logo/metahash-logo.png"
+    "dark":  "/logo/metahash-logo.png"
   },
   "footer": {
     "socials": {
