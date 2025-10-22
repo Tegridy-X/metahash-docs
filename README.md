@@ -1,43 +1,64 @@
-# Mintlify Starter Kit
+# **MetaHash | Subnet 73**
 
-Use the starter kit to get your docs deployed and ready to customize.
+## **🚀 Overview**
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+**MetaHash (Subnet 73)** is a decentralized liquidity and incentive layer on the Bittensor network.
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+It is designed to:
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+- Give **dTAO holders** a way to put α to work across subnets,
+- Allow **miners and subnet owners** to access α without destabilizing their own liquidity pools,
+- Enable **validators** to allocate weights in a transparent, market-driven way.
 
-## Development
+In short: MetaHash connects α supply and demand while minimizing slippage, improving capital efficiency, and strengthening subnet economics.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+## **🔥 Value Proposition**
 
-```
-npm i -g mint
-```
+### **🧑‍🌾 For dTAO Holders**
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+- Open participation – you don’t need to be a miner to earn.
+- Convert **α → MetaHash** exposure seamlessly.
+- Deploy α across subnets without causing slippage in your origin pools.
+- Receive transparent accounting of how your α is allocated.
 
-```
-mint dev
-```
+### **🧍‍♀️ For Subnet 73**
 
-View your local preview at `http://localhost:3000`.
+- Acts as a **liquidity hub** where α demand meets α supply.
+- Validator weights are allocated by a **fair, deterministic auction**, not subjective heuristics.
+- **Budget signaling and burns** ensure unused α is never misallocated.
+- Strengthens SN73’s role as a backbone for cross-subnet liquidity.
 
-## Publishing changes
+## **🔁 How It Works (Epoch Lifecycle)**
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+MetaHash validators run a three-epoch pipeline:
 
-## Need help?
+### **Epoch e: Auction & Clearing**
 
-### Troubleshooting
+1. **AuctionStart** — validator broadcasts start of auction.
+2. **Bids** — miners submit `(subnet_id, α, discount_bps)`.
+3. **Clearing** — bids are ranked by **TAO value** with slippage and optional reputation caps; partial fills allowed.
+4. **Early Wins** — winners are notified with a `Win` invoice, including the **payment window** `[as, de]` in e+1.
+5. **Stage Commitment** — snapshot of winners + budget signals (`bt_mu`, `bl_mu`) saved locally.
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+### **Epoch e+1: Commitments**
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+- Validator publishes e’s snapshot:
+  - **CID-only** on-chain (v4 commitments)
+  - Full JSON payload to IPFS
+- Strict publisher: **only e−1 is published**, no catch-up.
+
+### **Epoch e+2: Settlement**
+
+- Merge payment windows, scan on-chain α transfers.
+- Apply `STRICT_PER_SUBNET` rules (if enabled).
+- Compute miner scores, **burn underfill to UID 0**, and set weights.
+- If `TESTING=true`, preview only (no on-chain weights).
+
+## **🧠 Key Features**
+
+- **Auction → Clearing → Commitments → Settlement** pipeline.
+- **Slippage-aware valuation** of α bids (`K_SLIP`, `SLIP_TOLERANCE`).
+- **Reputation caps** per coldkey (baseline & max fractions).
+- **Budget signaling** (`bt_mu`, `bl_mu`) to enforce deterministic burns.
+- **Strict publisher**: CID on-chain, JSON in IPFS.
+- **Safety**: miners only pay to whitelisted treasuries (`metahash/treasuries.py`).

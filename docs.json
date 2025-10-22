@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "MetaHash",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -14,71 +14,34 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Overview",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "README",
+              "Quickstart",
+              "Miner-simple",
+              "Miner-advanced",
+              "Validator-simple",
+              "Validator-advanced"
             ]
           }
         ]
       },
       {
         "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
+        "groups": []
       }
     ],
-    "global": {
+  "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "anchor": "Metahash",
+          "href": "https://metahash73.com/",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Bittensor Discord",
+          "href": "https://discord.com/invite/bittensor",
+          "icon": "discord"
         }
       ]
     }
@@ -87,36 +50,11 @@
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/metahashsn73",
+      "github": "https://github.com/fx-integral/metahash",
+      "discord": "https://discord.gg/m9J8QTf5JT"
     }
   }
 }
