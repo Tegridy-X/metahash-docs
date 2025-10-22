@@ -22,10 +22,10 @@
           {
             "group": "Setup Guides",
             "pages": [
-              "Miner-Simple",
-              "Miner-Advanced",
-              "Validator-Simple",
-              "Validator-Advanced"
+              "MinerSetupSimple",
+              "MinerSetupAdvanced",
+              "ValidatorSetupSimple",
+              "ValidatorSetupAdvanced"
             ]
           }
         ]

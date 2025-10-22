@@ -80,9 +80,22 @@ python neurons/validator.py \
 </Note>
 
 <Note>
-  - Map validator hotkey → treasury coldkey in metahash/[treasuries.py](http://treasuries.py) (only these treasuries will be credited).
+  ### Validators and Alpha Acquisition Strategies
 
-  - Reputation controls & auction budget are configured in metahash/[config.py](http://config.py)
-
-  - Subnet weights are set in weights.yml
+  - Custom Subnet weights can be set in weights.yml
+  - Custom Strategy logic can be updated in metahash/validator/strategy.py
 </Note>
+
+### Sample(s) - weights.yml
+
+```yaml
+default: 1.0   # every subnet gets 1 unless listed below
+
+0: 0           # disable subnet 0
+73: 0          # disable subnet 73
+136: 1
+```
+
+### Validator Auction Overview
+
+![Auction Overview Pn](/pics/auction-overview.png)
