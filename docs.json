@@ -39,7 +39,12 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Metahash",
+          "anchor": "Home",
+          "href": "https://fx-integral.mintlify.app/",
+          "icon": "house"
+        },
+        {
+          "anchor": "MetaHash",
           "href": "https://metahash73.com/",
           "icon": "book-open-cover"
         },
