@@ -16,18 +16,17 @@
           {
             "group": "Get Started",
             "pages": [
-              "README",
-              "FAQ"
+              "README"
             ]
           },
           {
-          "group": "Setup Guides",
+            "group": "Setup Guides",
             "pages": [
               "Miner-Simple",
               "Miner-Advanced",
               "Validator-Simple",
               "Validator-Advanced"
-            ]        
+            ]
           }
         ]
       },
@@ -40,7 +39,7 @@
         ]
       }
     ],
-  "global": {
+    "global": {
       "anchors": [
         {
           "anchor": "Metahash",
@@ -65,5 +64,5 @@
       "github": "https://github.com/fx-integral/metahash",
       "discord": "https://discord.gg/m9J8QTf5JT"
     }
-  }  
+  }
 }

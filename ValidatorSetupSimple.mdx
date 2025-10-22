@@ -1,5 +1,80 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "⛏️ MetaHash Validator Guide (Subnet 73)"
+description: "This guide walks you through the simple miner setup."
 ---
 
+<Note>
+  ### Prerequisites
+
+  1. \*\*Subtensor lite node with `--pruning=2000`\*\* configured
+  2. \*\*Python 3.10+\*\* installed
+  3. \*\*pip/venv\*\* for isolated environment
+  4. A funded coldkey/hotkey wallet with stake registered in Subnet 73
+</Note>
+
+## **Simple setup**
+
+```shellscript
+# clone repository
+git clone https://github.com/fx-integral/metahash.git
+
+# change directory
+cd metahash
+
+# create python virtual environment
+python -m venv .venv && source .venv/bin/activate
+
+# install uv
+pip install -U pip wheel uv
+
+# install requirements
+uv pip install -e .
+
+# configure .env
+BT_WALLET_NAME=metahash
+BT_HOTKEY=validatorx
+IPFS_API_URL="http://ipfs.metahash73.com:5001/api/v0"
+```
+
+### Create a wallet and register the hotkey
+
+```shellscript
+# create coldkey
+btcli wallet new_coldkey --wallet.name metahash
+
+# create hotkey
+btcli wallet new_hotkey --wallet.name metahash --wallet.hotkey validatorx
+
+# register hotkey
+btcli register --netuid 73 --wallet.name metahash --wallet.hotkey validatorx
+```
+
+### Run Validator (pm2)
+
+```shellscript
+pm2 start python \ 
+--name metahash-validator \ 
+-- neurons/validator.py \
+--netuid 73 \
+--subtensor.network archive \ 
+--wallet.name metahash \ 
+--wallet.hotkey validatorx \
+--neuron.axon_off \
+--logging.debug \
+```
+
+### Run Validator (python)
+
+```shellscript
+python neurons/validator.py \
+--netuid 73 \
+--subtensor.network archive \ 
+--wallet.name metahash \ 
+--wallet.hotkey validatorx \
+--neuron.axon_off \
+--logging.debug \
+```
+
+<Note>
+  For `--subtensor.network` you can use archive. However we recommend running your own subtensor node with `--pruning=2000`
+</Note>
