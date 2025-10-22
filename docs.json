@@ -30,11 +30,9 @@
         ]
       },
       {
-        "tab": "Strategy",
+        "tab": "About",
         "groups": [
-          "Roadmap",
-          "OTC",
-          "Buyback"
+          "Connect"          
         ]
       }
     ],
