@@ -1,0 +1,70 @@
+---
+title: "⛏️ MetaHash Miner Guide (Subnet 73)"
+description: "This guide walks you through the simple miner setup."
+---
+
+## **Simple setup**
+
+```shellscript
+# clone repository
+git clone https://github.com/fx-integral/metahash.git
+
+# change directory
+cd metahash
+
+# create python virtual environment
+python -m venv .venv && source .venv/bin/activate
+
+# install uv
+pip install -U pip wheel uv
+
+# install requirements
+uv pip install -e .
+
+# copy .env sample
+cp .env.template .env
+
+# edit .env with WALLET_PASSWORD and optionally BITTENSOR_NETWORK
+# or unlock wallet interractively by starting the miner
+```
+
+### Create a wallet and register the hotkey
+
+```shellscript
+# create coldkey
+btcli wallet new_coldkey --wallet.name metahash
+
+# create hotkey
+btcli wallet new_hotkey --wallet.name metahash --wallet.hotkey minerx
+
+# register hotkey
+btcli register --netuid 73 --wallet.name metahash --wallet.hotkey minerx
+```
+
+### Run Miner
+
+```shellscript
+python neurons/miner.py \
+--netuid 73 \
+--wallet.name metahash \
+--wallet.hotkey minerx \
+--subtensor.network "finney" \
+--miner.bids.netuids 62 \
+--miner.bids.amounts 20.0 \
+--miner.bids.discounts 500 \
+--axon.port 8091 \
+--axon.external_port 8091 \
+--logging.debug \
+--payment.validators $source-stake-hotkeyA
+```
+
+<Note>
+  ⚠️ `--payment.validators  `is **hotkey where stake will be transferred from** (your hotkey or validator hotkey where alpha is staked)
+
+  ⚠️ `--miner.bids.discounts` is **basis points (bps)** — not percent.\
+  `500 = 5%`, `700 = 7%`, `900 = 9%`.
+</Note>
+
+<Note>
+  `--axon.port`  and `--axon.external_port` are required for communicating with validator and auction participation
+</Note>

@@ -11,24 +11,33 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Overview",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Get Started",
             "pages": [
               "README",
-              "Quickstart",
-              "Miner-simple",
-              "Miner-advanced",
-              "Validator-simple",
-              "Validator-advanced"
+              "FAQ"
             ]
+          },
+          {
+          "group": "Setup Guides",
+            "pages": [
+              "Miner-Simple",
+              "Miner-Advanced",
+              "Validator-Simple",
+              "Validator-Advanced"
+            ]        
           }
         ]
       },
       {
-        "tab": "API reference",
-        "groups": []
+        "tab": "Strategy",
+        "groups": [
+          "Roadmap",
+          "OTC",
+          "Buyback"
+        ]
       }
     ],
   "global": {
@@ -47,8 +56,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/metahash-logo.svg",
+    "dark": "/logo/metahash-logo.svg"
   },
   "footer": {
     "socials": {
@@ -56,5 +65,5 @@
       "github": "https://github.com/fx-integral/metahash",
       "discord": "https://discord.gg/m9J8QTf5JT"
     }
-  }
+  }  
 }

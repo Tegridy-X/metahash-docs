@@ -1,0 +1,126 @@
+---
+title: "⛏️ MetaHash Miner Guide (Subnet 73)"
+description: "This guide walks you through the simple miner setup."
+---
+
+## **Advanced setup**
+
+```shellscript
+# clone repository
+git clone https://github.com/fx-integral/metahash.git
+
+# change directory
+cd metahash
+
+# create python virtual environment
+python -m venv .venv && source .venv/bin/activate
+
+# install uv
+pip install -U pip wheel uv
+
+# install requirements
+uv pip install -e .
+
+# copy .env sample
+cp .env.template .env
+
+# edit .env with WALLET_PASSWORD and optionally BITTENSOR_NETWORK
+# or unlock wallet interractively by starting the miner
+```
+
+### Create a wallet and register the hotkey
+
+```shellscript
+# create coldkey
+btcli wallet new_coldkey --wallet.name metahash
+
+# create hotkey
+btcli wallet new_hotkey --wallet.name metahash --wallet.hotkey minerx
+
+# register hotkey
+btcli register --netuid 73 --wallet.name metahash --wallet.hotkey minerx
+```
+
+### Run Miner
+
+```shellscript
+python neurons/miner.py \
+--netuid 73 \
+--wallet.name metahash \
+--wallet.hotkey minerx \
+--subtensor.network "finney" \
+--miner.bids.netuids 62 41 \
+--miner.bids.amounts 10 25 \
+--miner.bids.discounts 500 700 \
+--axon.port 8091 \
+--axon.external_port 8091 \
+--logging.debug \
+--payment.validators $source-stake-hotkeyA $source-stake-hotkeyB
+```
+
+<Note>
+  ⚠️ `--payment.validators  `is **hotkey where stake will be transferred from** (your hotkey or validator hotkey where alpha is staked)
+
+  ⚠️ `--miner.bids.discounts` is **basis points (bps)** — not percent.\
+  `500 = 5%`, `700 = 7%`, `900 = 9%`.
+</Note>
+
+<Note>
+  `--axon.port`  and `--axon.external_port` are required for communicating with validator and auction participation
+</Note>
+
+### Miner Advanced Options
+
+<Note>
+  ### Bids:
+
+  `--miner.bids.netuids` Target subnets to bid on (repeat allowed), e.g. 30 30 12.
+
+  `--miner.bids.amounts` α amounts for each bid, e.g. 1000 500 200.
+
+  `--miner.bids.discounts` Discounts per bid: percent or bps tokens (e.g., 10 5 1000bps).
+
+  `--miner.bids.raw_discount` Interpret `--miner.bids.discounts` as RAW discounts to send (legacy). If omitted (default) `--miner.bids.discounts` are EFFECTIVE factors that the miner converts to raw discounts using the validator's weights.
+
+  `--miner.bids.validators` Validator hotkeys to source α from when bidding/paying. If set, availability is computed from these delegations and payments default to these hotkeys.
+</Note>
+
+<Note>
+  ### Bidding Controls:
+
+  `--bidding.max_total_alpha` Maximum total alpha to spend on bidding before stopping (0 = unlimited).
+
+  `--bidding.min_stake_alpha` Minimum alpha stake to maintain - stop bidding when reached.
+
+  `--bidding.stop_on_low_stake` Stop bidding when stake falls below min_stake_alpha threshold.
+</Note>
+
+<Note>
+  ### Validator Payments:
+
+  `--payment.validators` Round-robin pool of origin hotkeys (ss58) to use for α payments.
+
+  `--payment.map` Explicit subnet→hotkey mapping entries like '348:5G...abc'. Mapping takes precedence over `--payment.validators`.
+</Note>
+
+<Note>
+  ### Auto-sell options:
+
+  `--autosell.enabled` Enable automatic selling of SN73 alpha stake.
+
+  `--autosell.keep_alpha` Amount of alpha to keep (default: sell everything).
+
+  `--autosell.subnet_id` Subnet ID to monitor for auto-selling (default: 73).
+
+  `--autosell.check_interval` Check interval in seconds for auto-sell monitoring.
+
+  `--autosell.max_retries` Max retries for failed auto-sell transactions.
+
+  `--autosell.wait_for_inclusion` Wait for transaction inclusion before considering it successful.
+
+  `--autosell.wait_for_finalization` Wait for transaction finalization before considering it successful.
+
+  `--autosell.period` Block period for transaction confirmation.
+
+  `--autosell.total_alpha_target` Total amount of alpha to sell before stopping (0 = unlimited).
+</Note>
