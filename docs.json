@@ -26,13 +26,13 @@
               "ValidatorSetupSimple",
               "ValidatorSetupAdvanced"
             ]
+          },
+          {
+            "group": "Contact",
+            "pages": [
+              "Connect"
+            ]          
           }
-        ]
-      },
-      {
-        "tab": "About",
-        "groups": [
-          "Connect"          
         ]
       }
     ],
